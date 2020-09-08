@@ -1,9 +1,7 @@
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Stack;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
+
 
 public class FastCollinearPoints {
 
@@ -50,10 +48,7 @@ public class FastCollinearPoints {
         return false;
     }
 
-    private void printArray(Object[] arr) {
-        for (Object x : arr)
-            StdOut.println(x);
-    }
+   
 
     private Point[] findCollinearSequence(Point p, Point q, Point[] candidatePoints) {
         Stack<Point> collinearPoints = new Stack<Point>();
@@ -84,32 +79,15 @@ public class FastCollinearPoints {
         }
     }
 
-    public static void main(String[] args) {
-        // read the n points from a file
-        In in = new In(args[0]);
-        int n = in.readInt();
-        Point[] points = new Point[n];
-        for (int i = 0; i < n; i++) {
-            int x = in.readInt();
-            int y = in.readInt();
-            points[i] = new Point(x, y);
-        }
-
-        // print and draw the line segments
-        FastCollinearPoints collinear = new FastCollinearPoints(points);
-        for (LineSegment segment : collinear.segments()) {
-            StdOut.println(segment);
-        }
-    }
 
     private void validateInput(Point[] points) {
-        if (points == null) throw new IllegalArgumentException("The input cannot be null");
+        if (points == null) throw new IllegalArgumentException();
 
-        for (Point point : points) if (point == null) throw new IllegalArgumentException("The input cannot contain null points");
+        for (Point point : points) if (point == null) throw new IllegalArgumentException();
 
         for (int i = 0; i < points.length; i++)
             for (int j = i + 1; j < points.length; j++)
-                if (points[i].compareTo(points[j]) == 0) throw new IllegalArgumentException("The input cannot contain repeated points");
+                if (points[i].compareTo(points[j]) == 0) throw new IllegalArgumentException();
     }
 
     private boolean areCollinear(Point p1, Point p2, Point p3) {
